@@ -9,7 +9,7 @@ class NoteEditorViewModel : ViewModel() {
     private val _text = MutableStateFlow("")
     val text = _text.asStateFlow()
 
-    fun updateText(newText: String) {
+    fun onTextChange(newText: String) {
         _text.value = newText
     }
 }

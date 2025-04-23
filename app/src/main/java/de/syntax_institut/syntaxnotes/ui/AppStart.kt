@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import de.syntax_institut.syntaxnotes.ui.screens.NoteEditorScreen
+import de.syntax_institut.syntaxnotes.ui.screens.NoteListingScreen
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -29,7 +30,7 @@ fun AppStart() {
         ) {
 
             composable<NoteListingRoute> {
-                // NoteListingScreen()
+                NoteListingScreen()
             }
 
             composable<NoteEditorRoute> {

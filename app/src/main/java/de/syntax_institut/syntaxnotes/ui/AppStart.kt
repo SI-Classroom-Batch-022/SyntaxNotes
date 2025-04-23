@@ -36,7 +36,9 @@ fun AppStart() {
             }
 
             composable<NoteEditorRoute> {
-                NoteEditorScreen()
+                NoteEditorScreen(onBackClick = {
+                    navController.popBackStack()
+                })
             }
         }
     }

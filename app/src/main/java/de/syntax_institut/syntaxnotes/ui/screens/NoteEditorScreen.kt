@@ -4,7 +4,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -21,6 +25,7 @@ import de.syntax_institut.syntaxnotes.ui.viewmodels.NoteEditorViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NoteEditorScreen(
+    onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: NoteEditorViewModel = viewModel()
 ) {
@@ -28,9 +33,16 @@ fun NoteEditorScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(title = {
-                Text("New Note")
-            })
+            TopAppBar(
+                title = {
+                    Text("New Note")
+                },
+                navigationIcon = {
+                    IconButton(onClick = onBackClick) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back")
+                    }
+                }
+            )
         }
     ) { innerPadding ->
         Column(
@@ -56,5 +68,5 @@ fun NoteEditorScreen(
 @Preview(showBackground = true)
 @Composable
 fun NoteEditorScreenPreview() {
-    NoteEditorScreen()
+    NoteEditorScreen(onBackClick = {})
 }

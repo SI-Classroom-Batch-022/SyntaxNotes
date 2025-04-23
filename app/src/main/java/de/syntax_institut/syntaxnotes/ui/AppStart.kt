@@ -30,7 +30,9 @@ fun AppStart() {
         ) {
 
             composable<NoteListingRoute> {
-                NoteListingScreen()
+                NoteListingScreen(onAddNewNoteClick = {
+                    navController.navigate(NoteEditorRoute)
+                })
             }
 
             composable<NoteEditorRoute> {

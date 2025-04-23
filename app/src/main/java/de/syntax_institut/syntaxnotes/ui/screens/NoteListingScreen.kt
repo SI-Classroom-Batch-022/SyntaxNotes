@@ -16,7 +16,10 @@ import androidx.compose.ui.tooling.preview.Preview
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NoteListingScreen() {
+fun NoteListingScreen(
+    onAddNewNoteClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     Scaffold(
         topBar = {
             TopAppBar(title = {
@@ -24,7 +27,7 @@ fun NoteListingScreen() {
             })
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = {}) {
+            FloatingActionButton(onClick = onAddNewNoteClick) {
                 Icon(Icons.Filled.Add, "Add new note")
             }
         }
@@ -40,5 +43,5 @@ fun NoteListingScreen() {
 @Preview(showBackground = true)
 @Composable
 fun NoteListingScreenPreview() {
-    NoteListingScreen()
+    NoteListingScreen(onAddNewNoteClick = {})
 }

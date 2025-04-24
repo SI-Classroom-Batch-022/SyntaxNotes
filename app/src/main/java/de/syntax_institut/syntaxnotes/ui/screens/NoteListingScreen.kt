@@ -1,5 +1,6 @@
 package de.syntax_institut.syntaxnotes.ui.screens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -17,6 +18,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
+import de.syntax_institut.syntaxnotes.data.Note
 import de.syntax_institut.syntaxnotes.ui.components.NoteListingRow
 import de.syntax_institut.syntaxnotes.ui.viewmodels.NoteListingViewModel
 
@@ -24,6 +26,7 @@ import de.syntax_institut.syntaxnotes.ui.viewmodels.NoteListingViewModel
 @Composable
 fun NoteListingScreen(
     onAddNewNoteClick: () -> Unit,
+    onNoteClick: (Note) -> Unit,
     viewModel: NoteListingViewModel = viewModel(),
     modifier: Modifier = Modifier
 ) {
@@ -45,7 +48,14 @@ fun NoteListingScreen(
             modifier = Modifier.padding(innerPadding)
         ) {
             items(notes) { note ->
-                NoteListingRow(note)
+                NoteListingRow(
+                    note = note,
+                    modifier = Modifier.clickable(
+                        onClick = {
+                            onNoteClick(note)
+                        }
+                    )
+                )
             }
         }
     }
@@ -54,5 +64,8 @@ fun NoteListingScreen(
 @Preview(showBackground = true)
 @Composable
 fun NoteListingScreenPreview() {
-    NoteListingScreen(onAddNewNoteClick = {})
+    NoteListingScreen(
+        onAddNewNoteClick = {},
+        onNoteClick = { _ -> }
+    )
 }

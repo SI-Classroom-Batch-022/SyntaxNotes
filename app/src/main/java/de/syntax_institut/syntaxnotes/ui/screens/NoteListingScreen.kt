@@ -53,11 +53,9 @@ fun NoteListingScreen(
             items(notes) { note ->
                 NoteListingRow(
                     note = note,
-                    modifier = Modifier.clickable(
-                        onClick = {
-                            onNoteClick(note)
-                        }
-                    )
+                    onClick = {
+                        onNoteClick(note)
+                    }
                 )
             }
         }

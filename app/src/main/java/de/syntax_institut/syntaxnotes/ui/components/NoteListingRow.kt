@@ -1,5 +1,6 @@
 package de.syntax_institut.syntaxnotes.ui.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -12,11 +13,16 @@ import androidx.compose.ui.unit.dp
 import de.syntax_institut.syntaxnotes.data.Note
 
 @Composable
-fun NoteListingRow(note: Note, modifier: Modifier = Modifier) {
+fun NoteListingRow(
+    note: Note,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     Column(
         modifier = modifier
             .fillMaxWidth()
             .padding(16.dp)
+            .clickable(onClick = onClick)
     ) {
         Text(
             text = note.text,
@@ -28,5 +34,5 @@ fun NoteListingRow(note: Note, modifier: Modifier = Modifier) {
 @Preview
 @Composable
 fun NoteListingRowPreview() {
-    NoteListingRow(Note("Hello, Syntax!"))
+    NoteListingRow(Note("Hello, Syntax!"), onClick = {})
 }

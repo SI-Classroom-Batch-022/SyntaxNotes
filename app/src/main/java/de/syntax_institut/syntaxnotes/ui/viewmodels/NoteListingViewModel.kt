@@ -10,6 +10,17 @@ class NoteListingViewModel : ViewModel() {
     private val _notes = MutableStateFlow(listOf<Note>())
     val notes = _notes.asStateFlow()
 
+    private val _isShowingEditor = MutableStateFlow(false)
+    val isShowingEditor = _isShowingEditor.asStateFlow()
+
+    fun enableEditor() {
+        _isShowingEditor.value = true
+    }
+
+    fun disableEditor() {
+        _isShowingEditor.value = false
+    }
+
     init {
         _notes.value = listOf(
             Note("Hello, Syntax."),

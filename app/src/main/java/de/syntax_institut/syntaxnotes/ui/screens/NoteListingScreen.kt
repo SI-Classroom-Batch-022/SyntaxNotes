@@ -9,6 +9,8 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -31,6 +33,7 @@ fun NoteListingScreen(
     modifier: Modifier = Modifier
 ) {
     val notes by viewModel.notes.collectAsState()
+    val isShowingEditor by viewModel.isShowingEditor.collectAsState()
 
     Scaffold(
         topBar = {
@@ -39,7 +42,7 @@ fun NoteListingScreen(
             })
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = onAddNewNoteClick) {
+            FloatingActionButton(onClick = viewModel::enableEditor) {
                 Icon(Icons.Filled.Add, "Add new note")
             }
         }
@@ -56,6 +59,12 @@ fun NoteListingScreen(
                         }
                     )
                 )
+            }
+        }
+
+        if (isShowingEditor) {
+            ModalBottomSheet(onDismissRequest = viewModel::disableEditor) {
+                NoteEditorScreen(onBackClick = viewModel::disableEditor)
             }
         }
     }

@@ -24,12 +24,4 @@ class NoteListingViewModel : ViewModel() {
     fun addNote(note: Note) {
         _notes.value += note
     }
-
-    init {
-        _notes.value = listOf(
-            Note("Hello, Syntax."),
-            Note("Another note"),
-            Note("Learning MVVM!")
-        )
-    }
 }

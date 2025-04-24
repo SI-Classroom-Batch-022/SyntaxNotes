@@ -1,0 +1,20 @@
+package de.syntax_institut.syntaxnotes.ui.viewmodels
+
+import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import de.syntax_institut.syntaxnotes.data.Note
+
+class NoteListingViewModel : ViewModel() {
+
+    private val _notes = MutableStateFlow(listOf<Note>())
+    val notes = _notes.asStateFlow()
+
+    init {
+        _notes.value = listOf(
+            Note("Hello, Syntax."),
+            Note("Another note"),
+            Note("Learning MVVM!")
+        )
+    }
+}

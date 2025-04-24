@@ -20,9 +20,9 @@ fun NoteListingRow(
 ) {
     Column(
         modifier = modifier
+            .clickable(onClick = onClick)
             .fillMaxWidth()
             .padding(16.dp)
-            .clickable(onClick = onClick)
     ) {
         Text(
             text = note.text,

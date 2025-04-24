@@ -9,7 +9,15 @@ class NoteEditorViewModel : ViewModel() {
     private val _text = MutableStateFlow("")
     val text = _text.asStateFlow()
 
-    fun onTextChange(newText: String) {
+    private val _isCreateEnabled = MutableStateFlow(false)
+    val isCreateEnabled = _isCreateEnabled.asStateFlow()
+
+    fun updateText(newText: String) {
         _text.value = newText
+        _isCreateEnabled.value = newText.isNotEmpty()
+    }
+
+    fun clearText() {
+        updateText("")
     }
 }

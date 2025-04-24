@@ -9,7 +9,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import de.syntax_institut.syntaxnotes.ui.screens.NoteDisplayScreen
-import de.syntax_institut.syntaxnotes.ui.screens.NoteEditorScreen
 import de.syntax_institut.syntaxnotes.ui.screens.NoteListingScreen
 import kotlinx.serialization.Serializable
 
@@ -20,9 +19,6 @@ object NoteListingRoute
 data class NoteDisplayRoute(
     val text: String
 )
-
-@Serializable
-object NoteEditorRoute
 
 @Composable
 fun AppStart() {
@@ -42,20 +38,11 @@ fun AppStart() {
                             NoteDisplayRoute(note.text)
                         )
                     },
-                    onAddNewNoteClick = {
-                        navController.navigate(NoteEditorRoute)
-                    }
                 )
             }
 
             composable<NoteDisplayRoute> {
                 NoteDisplayScreen(onBackClick = {
-                    navController.popBackStack()
-                })
-            }
-
-            composable<NoteEditorRoute> {
-                NoteEditorScreen(onBackClick = {
                     navController.popBackStack()
                 })
             }

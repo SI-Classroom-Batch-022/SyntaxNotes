@@ -21,6 +21,10 @@ class NoteListingViewModel : ViewModel() {
         _isShowingEditor.value = false
     }
 
+    fun addNote(note: Note) {
+        _notes.value += note
+    }
+
     init {
         _notes.value = listOf(
             Note("Hello, Syntax."),

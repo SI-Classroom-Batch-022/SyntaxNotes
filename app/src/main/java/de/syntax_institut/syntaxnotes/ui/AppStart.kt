@@ -7,7 +7,6 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.mutableStateOf
@@ -33,23 +32,10 @@ fun AppStart() {
 
     Scaffold(
         bottomBar = {
-            NavigationBar {
-                TabItem.entries.forEach { tabItem ->
-                    NavigationBarItem(
-                        selected = selectedTabItem == tabItem,
-                        onClick = { selectedTabItem = tabItem },
-                        icon = {
-                            Icon(
-                                imageVector = tabItem.tabIcon,
-                                contentDescription = tabItem.tabTitle
-                            )
-                        },
-                        label = {
-                            Text(tabItem.tabTitle)
-                        }
-                    )
-                }
-            }
+            TabBar(
+                selectedTabItem = selectedTabItem,
+                onSelectTabItem = { selectedTabItem = it }
+            )
         }
     ) { innerPadding ->
         NavHost(
@@ -57,7 +43,6 @@ fun AppStart() {
             startDestination = selectedTabItem.route,
             modifier = Modifier.padding(innerPadding),
         ) {
-
             composable<NoteFavoritesRoute> {}
 
             composable<NoteListingRoute> {
@@ -82,7 +67,27 @@ fun AppStart() {
 }
 
 @Composable
-private fun TabBar() {
+private fun TabBar(
+    selectedTabItem: TabItem,
+    onSelectTabItem: (TabItem) -> Unit
+) {
+    NavigationBar {
+        TabItem.entries.forEach { tabItem ->
+            NavigationBarItem(
+                selected = selectedTabItem == tabItem,
+                onClick = { onSelectTabItem(tabItem) },
+                icon = {
+                    Icon(
+                        imageVector = tabItem.tabIcon,
+                        contentDescription = tabItem.tabTitle
+                    )
+                },
+                label = {
+                    Text(tabItem.tabTitle)
+                }
+            )
+        }
+    }
 }
 
 @Preview(showBackground = true)

@@ -4,7 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.navigation.toRoute
 import de.syntax_institut.syntaxnotes.data.Note
-import de.syntax_institut.syntaxnotes.ui.NoteDisplayRoute
+import de.syntax_institut.syntaxnotes.data.NoteDisplayRoute
 
 class NoteDisplayViewModel(
     savedStateHandle: SavedStateHandle

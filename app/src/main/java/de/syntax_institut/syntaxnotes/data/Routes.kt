@@ -3,10 +3,10 @@ package de.syntax_institut.syntaxnotes.data
 import kotlinx.serialization.Serializable
 
 @Serializable
-object NoteListingRoute
+object NoteFavoritesRoute
 
 @Serializable
-object NoteFavoritesRoute
+object NoteListingRoute
 
 @Serializable
 object SettingsRoute

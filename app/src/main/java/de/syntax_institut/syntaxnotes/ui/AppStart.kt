@@ -25,23 +25,7 @@ fun AppStart() {
 
     Scaffold(
         bottomBar = {
-            NavigationBar {
-                TabItem.entries.forEach { tabItem ->
-                    NavigationBarItem(
-                        selected = false,
-                        onClick = {},
-                        icon = {
-                            Icon(
-                                imageVector = tabItem.tabIcon,
-                                contentDescription = tabItem.tabTitle
-                            )
-                        },
-                        label = {
-                            Text(tabItem.tabTitle)
-                        }
-                    )
-                }
-            }
+            TabBar()
         }
     ) { innerPadding ->
         NavHost(
@@ -65,6 +49,27 @@ fun AppStart() {
                     navController.popBackStack()
                 })
             }
+        }
+    }
+}
+
+@Composable
+private fun TabBar() {
+    NavigationBar {
+        TabItem.entries.forEach { tabItem ->
+            NavigationBarItem(
+                selected = false,
+                onClick = {},
+                icon = {
+                    Icon(
+                        imageVector = tabItem.tabIcon,
+                        contentDescription = tabItem.tabTitle
+                    )
+                },
+                label = {
+                    Text(tabItem.tabTitle)
+                }
+            )
         }
     }
 }
